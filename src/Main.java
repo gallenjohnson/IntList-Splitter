@@ -26,9 +26,51 @@ public class Main {
 //	/*Set 18:*/ -2, -1, 1, 2, 3, 4, 5};
 
 
-
 	/**
 	 * Algorithm A: The More Accurate Algorithm
+	 *
+	 * @param integerList
+	 * @return
+	 * @throws InvalidInputException
+	 */
+	public int[][] splitEvenly(int[] integerList) throws InvalidInputException {
+		int listLength = integerList.length;
+		int[][] splitArray;
+		int halfSum = (Arrays.stream(integerList).sum()) / 2;
+		int tempHalfSum;
+		int errorMargin;
+		int startValue;
+		splitArray = new int[listLength][listLength];
+
+		for (int numElements = 0; numElements < listLength - 2; ++numElements) {
+			errorMargin = numElements;
+			startValue = listLength - 1;
+			tempHalfSum = halfSum;
+
+			//Check for a value equal to half the sum of integerList, plus or minus
+			//an error margin
+			if (halfSumIsPresent((tempHalfSum + errorMargin), integerList)) {
+				splitArray = halfSumFoundFillArray(integerList, tempHalfSum);
+			}
+			else if (halfSumIsPresent((tempHalfSum - errorMargin), integerList)) {
+				splitArray = halfSumFoundFillArray(integerList, tempHalfSum);
+			}
+			//Else start at the bottom of the array and try to add to a value approximate
+			//to the half sum + an error margin which increases every cycle
+			else {
+				for (; startValue >= 0; --startValue) {
+					if (integerList[startValue] < (tempHalfSum)) {
+						tempHalfSum -= Math.abs(integerList[startValue]);
+					}
+				}
+			}
+		}
+		return splitArray;
+	}
+
+	/**     //TODO COMPLETE
+	 * Algorithm B: The Faster Algorithm
+	 *
 	 * @param integerList
 	 * @return
 	 * @throws InvalidInputException
@@ -46,65 +88,39 @@ public class Main {
 //		//to assign the next largest value into the column with the lesser sum.
 //		else {
 //			splitArray = new int[listLength][listLength];
-//
+//			splitArray[listLength - 1][1] = integerList[listLength - 1];
+//			int sumSecondColumn = integerList[listLength - 1];
+//			int sumFirstColumn = 0;
+//			int negativeIndex = 0;
+//			for (int count = listLength - 2; count >= 0; --count) {
+//				if (integerList[count] < 0) {
+//					negativeIndex = count;
+//					break;
+//				}
+//				if (sumFirstColumn < sumSecondColumn) {
+//					splitArray[count][0] = integerList[count];
+//					sumFirstColumn += integerList[count];
+//				} else {
+//					splitArray[count][1] = integerList[count];
+//					sumSecondColumn += integerList[count];
+//				}
+//			}
+//			//If negative values are present, assign the next largest value into the
+//			//column with the greater sum.
+//			if (integerList[negativeIndex] < 0) {
+//				for (int index = 0; index < negativeIndex + 1; ++index) {
+//					if (sumFirstColumn < sumSecondColumn) {
+//						splitArray[index][1] = integerList[index];
+//						sumSecondColumn += integerList[index];
+//					} else {
+//						splitArray[index][0] = integerList[index];
+//						sumFirstColumn += integerList[index];
+//					}
+//				}
+//			}
 //		}
-//
 //		return splitArray;
 //	}
-
-	/**     //TODO COMPLETE
-	 * Algorithm B: The Faster Algorithm
-	 *
-	 * @param integerList
-	 * @return
-	 * @throws InvalidInputException
-	 */
-	public int[][] splitEvenly(int[] integerList) throws InvalidInputException {
-		int listLength = integerList.length;
-		int[][] splitArray;
-		int halfSum = (Arrays.stream(integerList).sum()) / 2;
-
-		//Check for a value equal to half the sum of integerList
-		if (halfSumIsPresent(halfSum, integerList)) {
-			splitArray = halfSumFoundFillArray(integerList, halfSum);
-		}
-		//Else start at the bottom of the array and use a greedy method variant
-		//to assign the next largest value into the column with the lesser sum.
-		else {
-			splitArray = new int[listLength][listLength];
-			splitArray[listLength - 1][1] = integerList[listLength - 1];
-			int sumSecondColumn = integerList[listLength - 1];
-			int sumFirstColumn = 0;
-			int negativeIndex = 0;
-			for (int count = listLength - 2; count >= 0; --count) {
-				if (integerList[count] < 0) {
-					negativeIndex = count;
-					break;
-				}
-				if (sumFirstColumn < sumSecondColumn) {
-					splitArray[count][0] = integerList[count];
-					sumFirstColumn += integerList[count];
-				} else {
-					splitArray[count][1] = integerList[count];
-					sumSecondColumn += integerList[count];
-				}
-			}
-			//If negative values are present, assign the next largest value into the
-			//column with the greater sum.
-			if (integerList[negativeIndex] < 0) {
-				for (int index = 0; index < negativeIndex + 1; ++index) {
-					if (sumFirstColumn < sumSecondColumn) {
-						splitArray[index][1] = integerList[index];
-						sumSecondColumn += integerList[index];
-					} else {
-						splitArray[index][0] = integerList[index];
-						sumFirstColumn += integerList[index];
-					}
-				}
-			}
-		}
-		return splitArray;
-	}
 
 	/**
 	 * This method assumes that a single half sum value is present in the integerList.
@@ -161,7 +177,6 @@ public class Main {
 	}
 
 	/**
-	 *
 	 * @param testList
 	 */
 	public static void printTestList(int[] testList) {
@@ -171,7 +186,6 @@ public class Main {
 	}
 
 	/**
-	 *
 	 * @param myArray
 	 */
 	public static void printTwoDArray(int[][] myArray) {
