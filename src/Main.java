@@ -39,31 +39,44 @@ public class Main {
 		int halfSum = (Arrays.stream(integerList).sum()) / 2;
 		int tempHalfSum;
 		int errorMargin;
-		int startValue;
 		splitArray = new int[listLength][listLength];
 
 		for (int numElements = 0; numElements < listLength - 2; ++numElements) {
 			errorMargin = numElements;
-			startValue = listLength - 1;
 			tempHalfSum = halfSum;
+			boolean sumFound = false;
 
 			//Check for a value equal to half the sum of integerList, plus or minus
 			//an error margin
 			if (halfSumIsPresent((tempHalfSum + errorMargin), integerList)) {
+				sumFound = true;
 				splitArray = halfSumFoundFillArray(integerList, tempHalfSum);
-			}
-			else if (halfSumIsPresent((tempHalfSum - errorMargin), integerList)) {
+			} else if (halfSumIsPresent((tempHalfSum - errorMargin), integerList)) {
+				sumFound = true;
 				splitArray = halfSumFoundFillArray(integerList, tempHalfSum);
 			}
 			//Else start at the bottom of the array and try to add to a value approximate
 			//to the half sum + an error margin which increases every cycle
 			else {
-				for (; startValue >= 0; --startValue) {
-					if (integerList[startValue] < (tempHalfSum)) {
-						tempHalfSum -= Math.abs(integerList[startValue]);
+				for (int endValue = listLength - 1; endValue >= 0; --endValue) {
+					if (integerList[endValue] <= (tempHalfSum)) {
+						tempHalfSum -= Math.abs(integerList[endValue]);
+						splitArray[endValue][1] = 1;                                  //Indicates a hit
 					}
+					if (tempHalfSum == errorMargin) {
+						sumFound = true;
+						for (int index = 0; index < listLength - 1; ++index) {
+							if (splitArray[index][1] == 1) {
+								splitArray[index][1] = integerList[index];
+							} else {
+								splitArray[index][0] = integerList[index];
+							}
+						}
+					}
+					if (sumFound) {break;}
 				}
 			}
+			if (sumFound) {break;}
 		}
 		return splitArray;
 	}
