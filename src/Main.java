@@ -6,25 +6,16 @@ import java.util.Arrays;
 public class Main {
 
 	private static int[] testList = {
-//	/*Set 1:*/ 25, 51, 43, 100, 58};
-//	/*Set 2:*/ 53, 68, 75, 94, 97};
-//	/*Set 3:*/ 9, 10, 58, 78, 88};
-//	/*Set 4:*/ 50, 54, 75, 78, 82};
-//	/*Set 5:*/ 31, 63, 76, 78, 90};
-//	/*Set 6:*/ 2, 13, 65, 68, 84};
-//	/*Set 7:*/ 2, 36, 68, 73, 89};
-//	/*Set 8:*/ 20, 25, 41, 49, 92};
-//	/*Set 9:*/ 24, 25, 27, 44, 87};
-//	/*Set 10:*/ 6, 7, 27, 56, 67};
-// 	/*Set 11:*/ 6, 4, 1, 3, 2, 5};
-	/*Set 12:*/ 100, 15, 300, 30, 60, 200};
-//	/*Set 13:*/ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // Discrepancy between A and B
-//	/*Set 14:*/ 10, 20, 90, 100, 200};          // No discrepancy
-//	/*Set 15:*/ 3, 3, 2, 2, 2};                 // Discrepancy between A and B
-//	/*Set 16:*/ 0, 1, 5, 6};                    // No discrepancy
-//	/*Set 17:*/ 4, 14, 15, 16, 17};             // Discrepancy between A and B
-//	/*Set 18:*/ -2, -1, 1, 2, 3, 4, 5};         // No discrepancy
-
+// 	/*Set 1:*/ 6, 4, 1, 3, 2, 5};               // No discrepancy
+//	/*Set 2:*/ 100, 15, 300, 30, 60, 200};      // Sums the same. Difference in sub value assignment
+//	/*Set 3:*/ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};  // Sums the same. Difference in sub value assignment
+//	/*Set 4:*/ 10, 20, 90, 100, 200};           // No discrepancy
+//	/*Set 5:*/ 3, 3, 2, 2, 2};                  // Discrepancy between A and B
+//	/*Set 6:*/ 0, 1, 5, 6};                     // No discrepancy
+//	/*Set 7:*/ 4, 14, 15, 16, 17};              // Discrepancy between A and B
+//	/*Set 8:*/ -2, -1, 1, 2, 3, 4, 5};          // No discrepancy
+//	/*Set 9:*/ 1, 1, 2, 1, 1, 1, 1, 1, 1, 6};   // Sums the same. Difference in sub value assignment
+	/*Set 10:*/ 1,2,2,3,5,6,1};                 // Sums the same. Difference in sub value assignment
 
 	/**
 	 * Algorithm A: The More Accurate Algorithm
