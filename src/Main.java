@@ -70,7 +70,6 @@ public class Main {
 
 
 	/**
-	 * //TODO COMPLETE
 	 * Algorithm B: The Faster Algorithm
 	 *
 	 * @param integerList
