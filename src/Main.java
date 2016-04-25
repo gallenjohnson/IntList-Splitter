@@ -17,13 +17,13 @@ public class Main {
 //	/*Set 9:*/ 24, 25, 27, 44, 87};
 //	/*Set 10:*/ 6, 7, 27, 56, 67};
 // 	/*Set 11:*/ 6, 4, 1, 3, 2, 5};
-//	/*Set 12:*/ 100, 15, 300, 30, 60, 200};
-//	/*Set 13:*/ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; //Discrepancy between A and B
-//	/*Set 14:*/ 10, 20, 90, 100, 200};
-//	/*Set 15:*/ 3, 3, 2, 2, 2};
-//	/*Set 16:*/ 0, 1, 5, 6};
-	/*Set 17:*/ 4, 14, 15, 16, 17};             //Discrepancy between A and B
-//	/*Set 18:*/ -2, -1, 1, 2, 3, 4, 5};
+	/*Set 12:*/ 100, 15, 300, 30, 60, 200};
+//	/*Set 13:*/ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // Discrepancy between A and B
+//	/*Set 14:*/ 10, 20, 90, 100, 200};          // No discrepancy
+//	/*Set 15:*/ 3, 3, 2, 2, 2};                 // Discrepancy between A and B
+//	/*Set 16:*/ 0, 1, 5, 6};                    // No discrepancy
+//	/*Set 17:*/ 4, 14, 15, 16, 17};             // Discrepancy between A and B
+//	/*Set 18:*/ -2, -1, 1, 2, 3, 4, 5};         // No discrepancy
 
 
 	/**
@@ -70,6 +70,7 @@ public class Main {
 					}
 					if (sumFound) {break;}
 				}
+				if(!sumFound){splitArray = subValuesFoundFillArray(tempArray, integerList);}
 			}
 			if (sumFound) {break;}
 		}
